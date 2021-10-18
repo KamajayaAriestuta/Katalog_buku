@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 include('../koneksi/koneksi.php');
 if ((isset($_GET['aksi'])) && (isset($_GET['data']))) {
@@ -11,6 +12,8 @@ if ((isset($_GET['aksi'])) && (isset($_GET['data']))) {
 }
 ?>
 
+=======
+>>>>>>> 3be6fd5f0eeb29f256b8df526f87e4cf3a1dac8d
 <!DOCTYPE html>
 <html>
 
@@ -65,12 +68,16 @@ if ((isset($_GET['aksi'])) && (isset($_GET['data']))) {
               </form>
             </div><br>
             <div class="col-sm-12">
+<<<<<<< HEAD
               <?php if (!empty($_GET['notif'])) { ?>
                 <?php if ($_GET['notif'] == "editberhasil") { ?>
                   <div class="alert alert-success" role="alert">
                     Data Berhasil Diubah</div>
                 <?php } ?>
               <?php } ?>
+=======
+              <div class="alert alert-success" role="alert">Data Berhasil Diubah</div>
+>>>>>>> 3be6fd5f0eeb29f256b8df526f87e4cf3a1dac8d
             </div>
             <table class="table table-bordered">
               <thead>
@@ -84,6 +91,7 @@ if ((isset($_GET['aksi'])) && (isset($_GET['data']))) {
                 </tr>
               </thead>
               <tbody>
+<<<<<<< HEAD
                 <?php
                 $batas = 2;
                 if (!isset($_GET['halaman'])) {
@@ -209,6 +217,29 @@ if ((isset($_GET['aksi'])) && (isset($_GET['data']))) {
                   }
                 }
               } ?>
+=======
+                <tr>
+                  <td>1.</td>
+                  <td>About Us</td>
+                  <td>24-02-2021</td>
+                  <td align="center">
+                    <a href="editkonten.php" class="btn btn-xs btn-info"><i class="fas fa-edit"></i></a>
+                    <a href="detailkonten.php" class="btn btn-xs btn-info" title="Detail"><i class="fas fa-eye"></i></a>
+
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- /.card-body -->
+          <div class="card-footer clearfix">
+            <ul class="pagination pagination-sm m-0 float-right">
+              <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
+              <li class="page-item"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+>>>>>>> 3be6fd5f0eeb29f256b8df526f87e4cf3a1dac8d
             </ul>
           </div>
         </div>
@@ -218,12 +249,20 @@ if ((isset($_GET['aksi'])) && (isset($_GET['data']))) {
       <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
+<<<<<<< HEAD
     <?php include("admin/includes/footer.php") ?>
+=======
+    <?php include("includes/footer.php") ?>
+>>>>>>> 3be6fd5f0eeb29f256b8df526f87e4cf3a1dac8d
 
   </div>
   <!-- ./wrapper -->
 
+<<<<<<< HEAD
   <?php include("admin/includes/script.php") ?>
+=======
+  <?php include("includes/script.php") ?>
+>>>>>>> 3be6fd5f0eeb29f256b8df526f87e4cf3a1dac8d
 </body>
 
 </html>

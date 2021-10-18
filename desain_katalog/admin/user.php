@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 session_start();
 include('../koneksi/koneksi.php');
@@ -12,6 +13,8 @@ if ((isset($_GET['aksi'])) && (isset($_GET['data']))) {
 }
 ?>
 
+=======
+>>>>>>> 3be6fd5f0eeb29f256b8df526f87e4cf3a1dac8d
 <!DOCTYPE html>
 <html>
 
@@ -59,9 +62,13 @@ if ((isset($_GET['aksi'])) && (isset($_GET['data']))) {
               <form method="" action="">
                 <div class="row">
                   <div class="col-md-4 bottom-10">
+<<<<<<< HEAD
                     <input type="text" class="form-control" id="kata_kunci" name="katakunci" value="<?php if (isset($_GET["katakunci"])) {
                                                                                                       echo $_GET["katakunci"];
                                                                                                     } ?>">
+=======
+                    <input type="text" class="form-control" id="kata_kunci" name="katakunci">
+>>>>>>> 3be6fd5f0eeb29f256b8df526f87e4cf3a1dac8d
                   </div>
                   <div class="col-md-5 bottom-10">
                     <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i>&nbsp; Search</button>
@@ -70,6 +77,7 @@ if ((isset($_GET['aksi'])) && (isset($_GET['data']))) {
               </form>
             </div><br>
             <div class="col-sm-12">
+<<<<<<< HEAD
               <?php if (!empty($_GET['notif'])) { ?>
                 <?php if ($_GET['notif'] == "tambahberhasil") { ?>
                   <div class="alert alert-success" role="alert">
@@ -82,6 +90,10 @@ if ((isset($_GET['aksi'])) && (isset($_GET['data']))) {
                     Data Berhasil Dihapus</div>
                 <?php } ?>
               <?php } ?>
+=======
+              <div class="alert alert-success" role="alert">Data Berhasil Ditambahkan</div>
+              <div class="alert alert-success" role="alert">Data Berhasil Diubah</div>
+>>>>>>> 3be6fd5f0eeb29f256b8df526f87e4cf3a1dac8d
             </div>
             <table class="table table-bordered">
               <thead>
@@ -96,6 +108,7 @@ if ((isset($_GET['aksi'])) && (isset($_GET['data']))) {
                 </tr>
               </thead>
               <tbody>
+<<<<<<< HEAD
                 <?php
                 $batas = 7;
                 if (!isset($_GET['halaman'])) {
@@ -149,10 +162,38 @@ if ((isset($_GET['aksi'])) && (isset($_GET['data']))) {
             $jum_data = mysqli_num_rows($query_jum);
             $jum_halaman = ceil($jum_data / $batas);
             ?>
+=======
+                <tr>
+                  <td>1.</td>
+                  <td>Salnan Ratih</td>
+                  <td>salnanratih@gmail.com</td>
+                  <td>superadmin</td>
+                  <td align="center">
+                    <a href="edituser.php" class="btn btn-xs btn-info" title="Edit"><i class="fas fa-edit"></i></a>
+                    <a href="detailuser.php" class="btn btn-xs btn-info" title="Detail"><i class="fas fa-eye"></i></a>
+                    <a href="#" class="btn btn-xs btn-warning"><i class="fas fa-trash" title="Hapus"></i></a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>2.</td>
+                  <td>Salnan Ratih</td>
+                  <td>salnanratih@gmail.com</td>
+                  <td>superadmin</td>
+                  <td align="center">
+                    <a href="edituser.php" class="btn btn-xs btn-info" title="Edit"><i class="fas fa-edit"></i></a>
+                    <a href="detailuser.php" class="btn btn-xs btn-info" title="Detail"><i class="fas fa-eye"></i></a>
+                    <a href="#" class="btn btn-xs btn-warning"><i class="fas fa-trash" title="Hapus"></i></a>
+                  </td>
+                </tr>
+
+              </tbody>
+            </table>
+>>>>>>> 3be6fd5f0eeb29f256b8df526f87e4cf3a1dac8d
           </div>
           <!-- /.card-body -->
           <div class="card-footer clearfix">
             <ul class="pagination pagination-sm m-0 float-right">
+<<<<<<< HEAD
               <?php
               if ($jum_halaman == 0) {
                 //tidak ada halaman
@@ -223,6 +264,13 @@ if ((isset($_GET['aksi'])) && (isset($_GET['data']))) {
                   }
                 }
               } ?>
+=======
+              <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
+              <li class="page-item"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+>>>>>>> 3be6fd5f0eeb29f256b8df526f87e4cf3a1dac8d
             </ul>
           </div>
         </div>

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php 
 
 session_start();
@@ -14,6 +15,8 @@ if (isset($_GET['data'])) {
 
 ?>
 
+=======
+>>>>>>> 3be6fd5f0eeb29f256b8df526f87e4cf3a1dac8d
 <!DOCTYPE html>
 <html>
 <head>
@@ -59,6 +62,7 @@ if (isset($_GET['data'])) {
       <!-- form start -->
       </br>
       <div class="col-sm-10">
+<<<<<<< HEAD
         <?php if (!empty($_GET['notif'])) {?>
           <?php if ($_GET['notif']=="editkosong") {?>
             <div class="alert alert-danger" role="alert">Maaf data Penerbit wajib di isi</div>
@@ -66,11 +70,20 @@ if (isset($_GET['data'])) {
         <?php } ?>
       </div>
       <form class="form-horizontal" method="POST" action="konfirmasieditpenerbit.php">
+=======
+          <div class="alert alert-danger" role="alert">Maaf data Penerbit wajib di isi</div>
+      </div>
+      <form class="form-horizontal">
+>>>>>>> 3be6fd5f0eeb29f256b8df526f87e4cf3a1dac8d
         <div class="card-body">
           <div class="form-group row">
             <label for="Penerbit" class="col-sm-3 col-form-label">Penerbit</label>
             <div class="col-sm-7">
+<<<<<<< HEAD
               <input type="text" class="form-control" id="Penerbit" name="penerbit" value="<?php echo $penerbit; ?>">
+=======
+              <input type="text" class="form-control" id="Penerbit" value="Andi">
+>>>>>>> 3be6fd5f0eeb29f256b8df526f87e4cf3a1dac8d
             </div>
           </div>
           <div class="form-group row">
