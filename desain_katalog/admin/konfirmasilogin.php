@@ -24,7 +24,7 @@ if (isset($_POST['login'])) {
         //get data
         while ($data = mysqli_fetch_row($query)) {
             $id_user = $data[0]; //1
-            $level = $data[1]; //speradmin
+            $level = $data[1]; //superadmin
             $_SESSION['id_user'] = $id_user;
             $_SESSION['level'] = $level;
             header("Location:profil.php");

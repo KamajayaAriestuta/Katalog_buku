@@ -2,10 +2,10 @@
 include('../koneksi/koneksi.php');
 if ((isset($_GET['aksi'])) && (isset($_GET['data']))) {
   if ($_GET['aksi'] == 'hapus') {
-    $id_tag = $_GET['data'];
+    $id_konten = $_GET['data'];
     //hapus kategori buku
-    $sql_dh = "delete from `tag` 
-      where `id_tag` = '$id_tag'";
+    $sql_dh = "delete from `konten` 
+      where `id_konten` = '$id_konten'";
     mysqli_query($koneksi, $sql_dh);
   }
 }
@@ -31,11 +31,11 @@ if ((isset($_GET['aksi'])) && (isset($_GET['data']))) {
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h3><i class="fas fa-tag"></i> Tag</h3>
+              <h3><i class="fas fa-file-alt"></i> Konten</h3>
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item active"> Tag</li>
+                <li class="breadcrumb-item active"> Konten</li>
               </ol>
             </div>
           </div>
@@ -46,9 +46,8 @@ if ((isset($_GET['aksi'])) && (isset($_GET['data']))) {
       <section class="content">
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title" style="margin-top:5px;"><i class="fas fa-list-ul"></i> Daftar Tag</h3>
+            <h3 class="card-title" style="margin-top:5px;"><i class="fas fa-list-ul"></i> Daftar Konten</h3>
             <div class="card-tools">
-              <a href="tambahtag.php" class="btn btn-sm btn-info float-right"><i class="fas fa-plus"></i> Tambah Tag</a>
             </div>
           </div>
           <!-- /.card-header -->
@@ -67,15 +66,9 @@ if ((isset($_GET['aksi'])) && (isset($_GET['data']))) {
             </div><br>
             <div class="col-sm-12">
               <?php if (!empty($_GET['notif'])) { ?>
-                <?php if ($_GET['notif'] == "tambahberhasil") { ?>
-                  <div class="alert alert-success" role="alert">
-                    Data Berhasil Ditambahkan</div>
-                <?php } else if ($_GET['notif'] == "editberhasil") { ?>
+                <?php if ($_GET['notif'] == "editberhasil") { ?>
                   <div class="alert alert-success" role="alert">
                     Data Berhasil Diubah</div>
-                <?php } else if ($_GET['notif'] == "hapusberhasil") { ?>
-                  <div class="alert alert-success" role="alert">
-                    Data Berhasil Dihapus</div>
                 <?php } ?>
               <?php } ?>
             </div>
@@ -83,7 +76,8 @@ if ((isset($_GET['aksi'])) && (isset($_GET['data']))) {
               <thead>
                 <tr>
                   <th width="5%">No</th>
-                  <th width="80%">Tag</th>
+                  <th width="50%">Judul</th>
+                  <th width="30%">Tanggal</th>
                   <th width="15%">
                     <center>Aksi</center>
                   </th>
@@ -100,44 +94,48 @@ if ((isset($_GET['aksi'])) && (isset($_GET['data']))) {
                   $posisi = ($halaman - 1) * $batas;
                 }
 
-                $sql_k = "SELECT `id_tag`,`tag` FROM `tag`";
+                $sql_k = "SELECT * FROM `konten`";
                 if (isset($_GET["katakunci"])) {
-                  $katakunci_tag = $_GET["katakunci"];
-                  $sql_k .= " where `tag` LIKE '%$katakunci_tag%'";
+                  $katakunci_konten = $_GET["katakunci"];
+                  $sql_k .= " where `judul` LIKE '%$katakunci_konten%'";
                 }
-                $sql_k .= " ORDER BY `tag` limit $posisi, $batas";
+                $sql_k .= " ORDER BY `judul` limit $posisi, $batas";
                 $query_k = mysqli_query($koneksi, $sql_k);
                 $no = 1;
                 while ($data_k = mysqli_fetch_assoc($query_k)) {
-                  $id_tag = $data_k['id_tag'];
-                  $tag = $data_k['tag'];
+                  $id_konten = $data_k['id_konten'];
+                  $judul = $data_k['judul'];
+                  $tanggal = $data_k['tanggal'];
                 ?>
                   <tr>
                     <td><?php echo $no; ?></td>
-                    <td><?php echo $tag; ?></td>
+                    <td><?php echo $judul; ?></td>
+                    <td><?php echo $tanggal; ?></td>
                     <td align="center">
-                      <a href="edittag.php?data=<?php echo $id_tag ?>" class="btn btn-xs btn-info"><i class="fas fa-edit"></i> Edit</a>
-                      <a href="javascript:if(confirm('Anda yakin ingin menghapus data <?php echo $tag; ?>?'))window.location.href = 'tag.php?aksi=hapus&data=<?php echo $id_tag; ?>&notif=hapusberhasil'" class="btn btn-xs btn-warning"><i class="fas fa-trash"></i> Hapus</a>
+                      <a href="editkonten.php?data=<?php echo $id_konten; ?>" class="btn btn-xs btn-info"><i class="fas fa-edit"></i></a>
+                      <a href="detailkonten.php?data=<?php echo $id_konten; ?>" class="btn btn-xs btn-info" title="Detail"><i class="fas fa-eye"></i></a>
+
                     </td>
                   </tr>
                 <?php $no++;
                 } ?>
               </tbody>
             </table>
-            <?php
-            //hitung jumlah semua data 
-            $sql_jum = "SELECT `id_tag`,`tag` FROM `tag`";
-            if (isset($_GET["katakunci"])) {
-              $katakunci_tag = $_GET["katakunci"];
-              $sql_jum .= " WHERE `tag` LIKE '%$katakunci_tag%'";
-            }
-            $sql_jum .= " ORDER BY `tag`";
-
-            $query_jum = mysqli_query($koneksi, $sql_jum);
-            $jum_data = mysqli_num_rows($query_jum);
-            $jum_halaman = ceil($jum_data / $batas);
-            ?>
           </div>
+
+          <?php
+          //hitung jumlah semua data 
+          $sql_jum = "SELECT * FROM `konten`";
+          if (isset($_GET["katakunci"])) {
+            $katakunci_konten = $_GET["katakunci"];
+            $sql_jum .= " WHERE `judul` LIKE '%$katakunci_konten%'";
+          }
+          $sql_jum .= " ORDER BY `judul`";
+
+          $query_jum = mysqli_query($koneksi, $sql_jum);
+          $jum_data = mysqli_num_rows($query_jum);
+          $jum_halaman = ceil($jum_data / $batas);
+          ?>
           <!-- /.card-body -->
           <div class="card-footer clearfix">
             <ul class="pagination pagination-sm m-0 float-right">
@@ -150,13 +148,13 @@ if ((isset($_GET['aksi'])) && (isset($_GET['data']))) {
                 $sebelum = $halaman - 1;
                 $setelah = $halaman + 1;
                 if (isset($_GET["katakunci"])) {
-                  $katakunci_tag = $_GET["katakunci"];
+                  $katakunci_konten = $_GET["katakunci"];
                   if ($halaman != 1) {
                     echo "<li class='page-item'>
                                 <a class='page-link' 
-                                href='tag.php?katakunci=$katakunci_tag&halaman=1'>First</a></li>";
+                                href='konten.php?katakunci=$katakunci_konten&halaman=1'>First</a></li>";
                     echo "<li class='page-item'><a class='page-link' 
-                                href='tag.php?katakunci=$katakunci_tag&halaman=$sebelum'>
+                                href='konten.php?katakunci=$katakunci_konten&halaman=$sebelum'>
                                 «</a></li>";
                   }
 
@@ -164,7 +162,7 @@ if ((isset($_GET['aksi'])) && (isset($_GET['data']))) {
                     if ($i > $halaman - 5 and $i < $halaman + 5) {
                       if ($i != $halaman) {
                         echo "<li class='page-item'><a class='page-link' 
-                                       href='tag.php?katakunci=$katakunci_tag&halaman=$i'>$i</a></li>";
+                                       href='konten.php?katakunci=$katakunci_konten&halaman=$i'>$i</a></li>";
                       } else {
                         echo "<li class='page-item'><a class='page-link'>$i</a></li>";
                       }
@@ -174,18 +172,18 @@ if ((isset($_GET['aksi'])) && (isset($_GET['data']))) {
                   if ($halaman != $jum_halaman) {
                     echo "<li class='page-item'>
                                  <a class='page-link'  
-                                 href='tag.php?katakunci=$katakunci_tag&halaman=$setelah'>»</a></li>";
+                                 href='konten.php?katakunci=$katakunci_konten&halaman=$setelah'>»</a></li>";
                     echo "<li class='page-item'><a class='page-link' 
-                                 href='tag.php?katakunci=$katakunci_tag&halaman=$jum_halaman'>
+                                 href='konten.php?katakunci=$katakunci_konten&halaman=$jum_halaman'>
                                  Last</a></li>";
                   }
                 } else {
 
                   if ($halaman != 1) {
                     echo "<li class='page-item'><a class='page-link' 
-                               href='tag.php?halaman=1'>First</a></li>";
+                               href='konten.php?halaman=1'>First</a></li>";
                     echo "<li class='page-item'><a class='page-link' 
-                               href='tag.php?
+                               href='konten.php?
                                halaman=$sebelum'>«</a></li>";
                   }
 
@@ -193,7 +191,7 @@ if ((isset($_GET['aksi'])) && (isset($_GET['data']))) {
                     if ($i > $halaman - 5 and $i < $halaman + 5) {
                       if ($i != $halaman) {
                         echo "<li class='page-item'><a class='page-link' 
-                                        href='tag.php?halaman=$i'>$i</a></li>";
+                                        href='konten.php?halaman=$i'>$i</a></li>";
                       } else {
                         echo "<li class='page-item'><a class='page-link'>$i</a></li>";
                       }
@@ -203,10 +201,10 @@ if ((isset($_GET['aksi'])) && (isset($_GET['data']))) {
 
                   if ($halaman != $jum_halaman) {
                     echo "<li class='page-item'><a class='page-link' 
-                                 href='tag.php?halaman=$setelah'>
+                                 href='konten.php?halaman=$setelah'>
                                  »</a></li>";
                     echo "<li class='page-item'><a class='page-link' 
-                                 href='tag.php?
+                                 href='konten.php?
                                  halaman=$jum_halaman'>Last</a></li>";
                   }
                 }
@@ -220,12 +218,12 @@ if ((isset($_GET['aksi'])) && (isset($_GET['data']))) {
       <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
-    <?php include("includes/footer.php") ?>
+    <?php include("admin/includes/footer.php") ?>
 
   </div>
   <!-- ./wrapper -->
 
-  <?php include("includes/script.php") ?>
+  <?php include("admin/includes/script.php") ?>
 </body>
 
 </html>

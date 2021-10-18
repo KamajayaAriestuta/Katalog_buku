@@ -150,80 +150,56 @@ if ((isset($_GET['aksi'])) && (isset($_GET['data']))) {
 
         <div class="card-footer clearfix">
           <ul class="pagination pagination-sm m-0 float-right">
-            <!-- <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">&raquo;</a></li> -->
-            <ul class="pagination pagination-sm m-0 float-right">
-              <?php
-              if ($jum_halaman == 0) {
-                //tidak ada halaman
-              } else if ($jum_halaman == 1) {
-                echo "<li class='page-item'><a class='page-link'>1</a></li>";
-              } else {
-                $sebelum = $halaman - 1;
-                $setelah = $halaman + 1;
-                if (isset($_GET["katakunci"])) {
-                  $katakunci_kategori = $_GET["katakunci"];
-                  if ($halaman != 1) {
-                    echo "<li class='page-item'>
-                  <a class='page-link' 
-                  href='kategoriblog.php?katakunci=$katakunci_kategori&halaman=1'>First</a></li>";
-                    echo "<li class='page-item'><a class='page-link' 
-                  href='kategoriblog.php?katakunci=$katakunci_kategori&halaman=$sebelum'>«</a></li>";
-                  }
-                  for ($i = 1; $i <= $jum_halaman; $i++) {
+            <?php
+            if ($jum_halaman == 0) {
+              // code...
+            } elseif ($jum_halaman == 1) {
+              echo "<li class='page-item'><a class='page-link'>1</a></li>";
+            } else {
+              $sebelum = $halaman - 1;
+              $setelah = $halaman + 1;
+
+              if (isset($_GET["katakunci"])) {
+                $katakunci_kategoriblog = $_GET["katakunci"];
+                if ($halaman != 1) {
+                  echo "<li class='page-item'><a class='page-link' href='kategoriblog.php?katakunci=$katakunci_kategoriblog&halaman=1'>First</a></li>";
+                  echo "<li class='page-item'><a class='page-link' href='kategoriblog.php?katakunci=$katakunci_kategoriblog&halaman=$sebelum'>«</a></li>";
+                }
+                for ($i = 1; $i <= $jum_halaman; $i++) {
+                  if ($i > $halaman - 5 and $i < $halaman + 5) {
                     if ($i != $halaman) {
-                      echo "<li class='page-item'><a class='page-link' 
-                    href='kategoriblog.php?katakunci=$katakunci_kategori&halaman=$i'>$i</a></li>";
+                      echo "<li class='page-item'><a class='page-link'href='kategoriblog.php?katakunci=$katakunci_kategoriblog&halaman=$i'>$i</a></li>";
                     } else {
                       echo "<li class='page-item'><a class='page-link'>$i</a></li>";
                     }
                   }
-                  if ($halaman != $jum_halaman) {
-                    echo "<li class='page-item'>
-                    <a class='page-link'  
-                    href='kategoriblog.php?katakunci=$katakunci_kategori&halaman=$setelah'>»</a></li>";
-                    echo "<li class='page-item'><a class='page-link' 
-                    href='kategoriblog.php?katakunci=$katakunci_kategori&halaman=$jum_halaman'>
-                    Last</a></li>";
-                  }
-                } else {
-                  if ($halaman != 1) {
-                    echo "<li class='page-item'><a class='page-link' 
-                  href='kategoriblog.php?halaman=1'>First</a></li>";
-                    echo "<li class='page-item'><a class='page-link' 
-                  href='kategoriblog.php?
-                  halaman=$sebelum'>«</a></li>";
-                  }
-                  for ($i = 1; $i <= $jum_halaman; $i++) {
-                    if ($i > $halaman - 5 and $i < $halaman + 5) {
-                      if ($i != $halaman) {
-                        echo "<li class='page-item'><a class='page-link' 
-                          href='kategoriblog.php?katakunci=$katakunci_kategori&halaman=$i'>
-                          $i</a></li>";
-                      } else {
-                        echo "<li class='page-item'>
-                          <a class='page-link'>$i</a></li>";
-                      }
+                }
+                if ($halaman != $jum_halaman) {
+                  echo "<li class='page-item'><a class='page-link'href='kategoriblog.php?katakunci=$katakunci_kategoriblog&halaman=$setelah'>»</a></li>";
+                  echo "<li class='page-item'><a class='page-link' href='kategoriblog.php?halaman=$jum_halaman'>Last</a></li>";
+                }
+              } else {
+                if ($halaman != 1) {
+                  echo "<li class='page-item'><a class='page-link'href='kategoriblog.php?halaman=1'>First</a></li>";
+                  echo "<li class='page-item'><a class='page-link'href='kategoriblog.php?halaman=$sebelum'>«</a></li>";
+                }
+                for ($i = 1; $i <= $jum_halaman; $i++) {
+                  if ($i > $halaman - 5 and $i < $halaman + 5) {
+                    if ($i != $halaman) {
+                      echo "<li class='page-item'><a class='page-link'href='kategoriblog.php?halaman=$i'>$i</a></li>";
+                    } else {
+                      echo "<li class='page-item'><a class='page-link'>$i</a></li>";
                     }
                   }
-
-                  if ($halaman != $jum_halaman) {
-                    echo "<li class='page-item'><a class='page-link' 
-                    href='kategoriblog.php?halaman=$setelah'>
-                    »</a></li>";
-                    echo "<li class='page-item'><a class='page-link' 
-                    href='kategoriblog.php?
-                    halaman=$jum_halaman'>Last</a></li>";
-                  }
                 }
-              } ?>
-            </ul>
-
+                if ($halaman != $jum_halaman) {
+                  echo "<li class='page-item'><a class='page-link'href='kategoriblog.php?halaman=$setelah'>»</a></li>";
+                  echo "<li class='page-item'><a class='page-link'href='kategoriblog.php?halaman=$jum_halaman'>Last</a></li>";
+                }
+              }
+            }
+            ?>
           </ul>
-
         </div>
     </div>
   </div>

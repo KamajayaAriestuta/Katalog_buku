@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('koneksi/koneksi.php');
+include('../koneksi/koneksi.php');
 if (isset($_GET['data'])) {
   $id_tag = $_GET['data'];
   $_SESSION['id_tag'] = $id_tag;
@@ -18,14 +18,14 @@ if (isset($_GET['data'])) {
 <html>
 
 <head>
-  <?php include("admin/includes/head.php") ?>
+  <?php include("includes/head.php") ?>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
   <div class="wrapper">
-    <?php include("admin/includes/header.php") ?>
+    <?php include("includes/header.php") ?>
 
-    <?php include("admin/includes/sidebar.php") ?>
+    <?php include("includes/sidebar.php") ?>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -91,12 +91,12 @@ if (isset($_GET['data'])) {
       <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
-    <?php include("admin/includes/footer.php") ?>
+    <?php include("includes/footer.php") ?>
 
   </div>
   <!-- ./wrapper -->
 
-  <?php include("admin/includes/script.php") ?>
+  <?php include("includes/script.php") ?>
 </body>
 
 </html>

@@ -1,4 +1,3 @@
-<?php session_start(); ?>
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
   <!-- Brand Logo -->
@@ -80,32 +79,32 @@
             </p>
           </a>
         </li>
-        <?php if ($_SESSION['level'] == "Superadmin") { ?>
-          <li class="nav-item">
-            <a href="user.php" class="nav-link">
-              <i class="nav-icon fas fa-user-cog"></i>
-              <p>
-                Pengaturan User
-              </p>
-            </a>
-          </li>
-        <?php } ?>
+        <!-- <?php if ($_SESSION['level'] == "Superadmin") { ?> -->
         <li class="nav-item">
-          <a href="ubahpassword.php" class="nav-link">
-            <i class="nav-icon fas fa-user-lock"></i>
+          <a href="user.php" class="nav-link">
+            <i class="nav-icon fas fa-user-cog"></i>
             <p>
-              Ubah Password
+              Pengaturan User
             </p>
           </a>
         </li>
-        <li class="nav-item">
-          <a href="signout.php" class="nav-link">
-            <i class="nav-icon fas fa-sign-out-alt"></i>
-            <p>
-              Sign Out
-            </p>
-          </a>
-        </li>
+      <?php } ?>
+      <li class="nav-item">
+        <a href="ubahpassword.php" class="nav-link">
+          <i class="nav-icon fas fa-user-lock"></i>
+          <p>
+            Ubah Password
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="signout.php" class="nav-link">
+          <i class="nav-icon fas fa-sign-out-alt"></i>
+          <p>
+            Sign Out
+          </p>
+        </a>
+      </li>
       </ul>
     </nav>
     <!-- /.sidebar-menu -->
